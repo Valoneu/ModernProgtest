@@ -496,6 +496,10 @@ details.menuList > div > div:last-child {
 	border-bottom: none;
 }
 
+details.menuList > div > div > div > br {
+	line-height: 0px !important;
+}
+
 /* Big Buttons in List - Further Reduced Height */
 details.menuList .bigButLink, details.menuList .bigButDis {
 	flex-shrink: 0 !important;

@@ -3,6 +3,9 @@
   "name": "ModernProgtest",
   "version": "1.0",
   "description": "Applies modern custom CSS styles to progtest.fit.cvut.cz.",
+  "icons": {
+    "128": "Icon.png"
+  },
   "content_scripts": [
     {
       "matches": ["*://progtest.fit.cvut.cz/*"],
