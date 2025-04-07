@@ -1,0 +1,602 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600&family=Space+Mono:wght@400;700&display=swap');
+/* ModernProgtest - Dark Mode CSS v3 for progtest.fit.cvut.cz */
+
+:root {
+	/* Darker Color Palette */
+	--bg-main: #121212;       /* Even darker main background */
+	--bg-surface: #1e1e1e;   /* Even darker surface (boxes, tables) */
+	--bg-hover: #2a2a2a;     /* Dark hover */
+	--bg-header: #161616;    /* Even darker header */
+
+	--text-primary: #e0e0e0; /* Slightly adjusted primary text */
+	--text-secondary: #a0a0a0; /* Slightly adjusted secondary text */
+	--text-code: #9eeb80;    /* Lighter green for code */
+
+	--border-color: #383838; /* Darker border */
+	--border-strong: #555555;/* Darker strong border */
+
+	/* Accents remain largely the same, check contrast */
+	--accent-primary: #58a6ff; /* Slightly brighter blue */
+	--accent-primary-hover: #3b82f6;
+	--accent-danger: #f87171;
+	--accent-danger-hover: #ef4444;
+	--accent-success: #56d364; /* Slightly adjusted green */
+	--accent-warning: #facc15;
+
+	--font-sans: "Roboto Mono", monospace, system-ui, sans-serif; /* Roboto Mono jako hlavní sans-serif */
+	--font-mono: "Roboto Mono", Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace; /* Roboto Mono i pro mono */
+}
+
+/* === Global Styles === */
+*, *::before, *::after {
+	box-sizing: border-box !important;
+}
+
+html {
+	background-color: var(--bg-main) !important;
+  /* Option 1: Most common 'smoother' rendering */
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important; /* For Firefox on macOS */
+  /* font-smooth: grayscale !important; */ /* Standard property, but less supported */
+
+  /* Option 2: Potentially sharper on standard DPI (less common now) */
+  /* -webkit-font-smoothing: subpixel-antialiased !important; */
+  /* -moz-osx-font-smoothing: auto !important; */ /* Let Firefox decide on macOS */
+
+  /* Hint for better legibility (kerning, ligatures) */
+  text-rendering: optimizeLegibility !important;
+	
+  /* Ensure kerning is on (usually default, but good to be explicit) */
+  font-kerning: normal !important;
+}
+
+body {
+	background-color: var(--bg-main) !important;
+	color: var(--text-primary) !important;
+	font-family: var(--font-sans) !important;
+	font-size: 14px !important;
+	margin: 0 !important;
+	padding-top: 45px !important;
+	letter-spacing: 1px !important;
+	-webkit-font-smoothing: inherit !important;
+	-moz-osx-font-smoothing: inherit !important;
+	text-rendering: inherit !important;
+	font-kerning: inherit !important;
+}
+
+pre, code, tt {
+	text-rendering: auto !important; /* Or optimizeSpeed if needed */
+}
+
+/* === Top Navigation / Breadcrumbs === */
+div.navLink {
+	background-color: var(--bg-header) !important;
+	border-bottom: 1px solid var(--border-color) !important;
+	color: var(--text-secondary) !important;
+	font-size: 13px !important;
+	position: fixed !important;
+	top: 0 !important;
+	left: 0 !important;
+	width: 100% !important;
+	z-index: 100 !important;
+	display: flex !important;
+	justify-content: space-between !important;
+	align-items: center !important;
+	padding: 0 15px !important;
+	height: 45px !important;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.4); /* Slightly stronger shadow on darker bg */
+	background-image: none !important;
+}
+div.navLink > div {
+	padding: 0 !important;
+	height: auto !important;
+}
+div.navLink span, div.navLink b {
+	color: var(--text-secondary) !important;
+}
+div.navLink a, div.navLink a:visited {
+	color: var(--accent-primary) !important;
+	text-decoration: none !important;
+	font-weight: normal !important;
+}
+div.navLink a:hover {
+	color: #8cc4ff !important; /* Lighter blue on hover */
+	text-decoration: underline !important;
+	background: none !important;
+}
+div.navLink > div:last-child a { /* Logout link */
+	color: var(--accent-danger) !important;
+	font-weight: bold !important;
+}
+div.navLink > div:last-child a:hover {
+	color: var(--accent-danger-hover) !important;
+}
+
+
+/* === Layout Wrappers === */
+.topLayout {
+	width: 95% !important;
+	max-width: 1200px;
+	margin: 25px auto !important; /* More space top/bottom */
+}
+
+.newBox {
+	background-color: var(--bg-surface) !important;
+	border: 1px solid var(--border-color) !important;
+	box-shadow: none !important;
+	border-radius: 4px !important; /* Slightly less rounding */
+	padding: 20px !important;
+	margin-bottom: 25px !important;
+	color: var(--text-primary) !important;
+}
+
+/* === Typography inside Boxes === */
+.newBox p {
+	line-height: 2 !important;
+	margin-bottom: 1.1em !important;
+	color: var(--text-primary) !important;
+}
+.newBox h1, .newBox h2, .newBox h3, .newBox h4 {
+	color: var(--text-primary) !important;
+	font-family: "Space Mono", var(--font-mono) !important; /* Space Mono, s fallbackem na Roboto Mono */
+	font-weight: 600 !important;
+	margin-top: 1.5em !important;
+	margin-bottom: 0.8em !important;
+	border-bottom: 1px solid var(--border-color);
+	padding-bottom: 0.4em;
+}
+.newBox ul {
+	list-style: disc !important;
+	margin-left: 25px !important;
+	margin-bottom: 1.1em !important;
+}
+.newBox li {
+	margin-bottom: 0.6em !important;
+	color: var(--text-primary) !important;
+}
+.newBox hr {
+	height: 1px !important;
+	border: none !important;
+	border-top: 1px solid var(--border-color) !important;
+	margin: 2.5em 0 !important; /* More spacing around hr */
+}
+.newBox pre, .newBox tt {
+	font-family: var(--font-mono) !important;
+	background-color: var(--bg-main) !important;
+	border: 2px solid var(--border-color) !important;
+	padding: 1px 1px !important; /* Adjusted padding */
+	border-radius: 4px !important; /* Match box rounding */
+	color: var(--text-code) !important;
+	overflow-x: auto !important;
+	white-space: pre-wrap !important;
+	word-wrap: break-word !important;
+	font-size: 13px !important;
+	line-height: 2 !important;
+}
+.newBox code { /* Inline code */
+	font-family: var(--font-mono) !important;
+	background-color: var(--bg-hover) !important;
+	color: var(--text-code) !important;
+	padding: 0.2em 0.4em !important;
+	border-radius: 3px !important;
+	font-size: 0.9em !important;
+}
+
+/* === Tables === */
+.newBox table {
+	width: 100% !important;
+	border-collapse: collapse !important;
+	margin: 15px 0 !important;
+	font-size: 13px !important;
+}
+.newBox table td {
+	padding: 10px 12px !important;
+	border: none !important;
+	border-bottom: 1px solid var(--border-color) !important;
+	vertical-align: middle !important;
+	color: var(--text-primary) !important;
+	background-color: transparent !important;
+}
+.newBox table tr:last-child td {
+	border-bottom: none !important;
+}
+.newBox table tr:hover td {
+	background-color: var(--bg-hover) !important;
+}
+
+/* Header-like cells */
+td.lrtbSepCell, td.ltbSepCell, td.rtbSepCell, td.tbSepCell {
+	background-color: var(--bg-header) !important;
+	color: var(--text-primary) !important;
+	font-weight: bold !important;
+	border: 1px solid var(--border-strong) !important; /* Stronger border */
+	border-radius: 0px !important; /* No rounding */
+	padding: 8px 12px !important;
+}
+td.ltbSepCell { border-right-width: 0 !important; }
+td.rtbSepCell { border-left-width: 0 !important; }
+td.tbSepCell { border-left-width: 0 !important; border-right-width: 0 !important; }
+
+/* === Submission Status Header Cells === */
+/* Targeting cells like ltbOkSepCell, tbHalfSepCell etc. */
+
+/* Common styles for ALL status header cells */
+.newBox table td.ltbOkSepCell, .newBox table td.tbOkSepCell, .newBox table td.rtbOkSepCell,
+.newBox table td.ltbHalfSepCell, .newBox table td.tbHalfSepCell, .newBox table td.rtbHalfSepCell,
+.newBox table td.ltbFailSepCell, .newBox table td.tbFailSepCell, .newBox table td.rtbFailSepCell,
+.newBox table td.ltbWaitSepCell, .newBox table td.tbWaitSepCell, .newBox table td.rtbWaitSepCell,
+.newBox table td.ltbXSepCell, .newBox table td.tbXSepCell, .newBox table td.rtbXSepCell,
+.newBox table td.ltbEditSepCell, .newBox table td.tbEditSepCell, .newBox table td.rtbEditSepCell,
+.newBox table td.ltbSepCell, .newBox table td.tbSepCell, .newBox table td.rtbSepCell /* Include default Sep */
+{
+    padding: 8px 12px !important; /* Restore decent padding */
+    font-weight: bold !important;
+    border: 1px solid var(--border-color) !important; /* Add base border */
+    border-bottom: 1px solid var(--border-strong) !important; /* Stronger bottom border */
+    border-radius: 0 !important; /* No rounding */
+    text-align: left !important; /* Default left align */
+    color: var(--text-primary) !important; /* Default text color */
+    background-color: var(--bg-header) !important; /* Default background */
+    transition: none !important; /* No hover effect needed here */
+}
+/* Center align specific cells if needed (e.g., rightmost cell with button) */
+.newBox table td.rtbOkSepCell,
+.newBox table td.rtbHalfSepCell,
+.newBox table td.rtbFailSepCell,
+/* ... add other rtb cells ... */
+.newBox table td.rtbSepCell {
+    text-align: center !important;
+}
+
+/* --- Status Specific Backgrounds & Text Colors --- */
+
+/* OK / Success (Green) */
+.newBox table td.ltbOkSepCell, .newBox table td.tbOkSepCell, .newBox table td.rtbOkSepCell {
+    background-color: #285c34 !important; /* Darker Green */
+    border-color: #337040 !important;
+    color: #ffffff !important;
+}
+/* Half / Warning (Yellow/Orange) */
+.newBox table td.ltbHalfSepCell, .newBox table td.tbHalfSepCell, .newBox table td.rtbHalfSepCell {
+    background-color: #7a5700 !important; /* Dark Amber/Orange */
+    border-color: #9e7000 !important;
+    color: #ffffff !important; /* White text should be ok */
+}
+/* Fail / Error (Red) - Assuming ltbFailSepCell etc. exist */
+.newBox table td.ltbFailSepCell, .newBox table td.tbFailSepCell, .newBox table td.rtbFailSepCell {
+    background-color: #7f1d1d !important; /* Dark Red */
+    border-color: #991b1b !important;
+    color: #ffffff !important;
+}
+/* Wait / Info (Blue) - Assuming ltbWaitSepCell etc. exist */
+.newBox table td.ltbWaitSepCell, .newBox table td.tbWaitSepCell, .newBox table td.rtbWaitSepCell {
+    background-color: #1e40af !important; /* Dark Blue */
+    border-color: #1d4ed8 !important;
+    color: #ffffff !important;
+}
+/* Edit / Purple - Assuming ltbEditSepCell etc. exist */
+.newBox table td.ltbEditSepCell, .newBox table td.tbEditSepCell, .newBox table td.rtbEditSepCell {
+    background-color: #581c87 !important; /* Dark Purple */
+    border-color: #6b21a8 !important;
+    color: #ffffff !important;
+}
+/* X / Other (Maybe Orange/Different?) - Assuming ltbXSepCell etc. exist */
+.newBox table td.ltbXSepCell, .newBox table td.tbXSepCell, .newBox table td.rtbXSepCell {
+    background-color: #8c2d04 !important; /* Dark Orange */
+    border-color: #a03305 !important;
+    color: #ffffff !important;
+}
+
+/* --- Border adjustments for adjacent cells --- */
+/* Remove right border from left cell */
+.newBox table td.ltbOkSepCell, .newBox table td.ltbHalfSepCell, .newBox table td.ltbFailSepCell,
+.newBox table td.ltbWaitSepCell, .newBox table td.ltbXSepCell, .newBox table td.ltbEditSepCell,
+.newBox table td.ltbSepCell {
+    border-right-width: 0 !important;
+}
+/* Remove left border from right cell */
+.newBox table td.rtbOkSepCell, .newBox table td.rtbHalfSepCell, .newBox table td.rtbFailSepCell,
+.newBox table td.rtbWaitSepCell, .newBox table td.rtbXSepCell, .newBox table td.rtbEditSepCell,
+.newBox table td.rtbSepCell {
+    border-left-width: 0 !important;
+}
+/* Remove both left and right borders from middle cell */
+.newBox table td.tbOkSepCell, .newBox table td.tbHalfSepCell, .newBox table td.tbFailSepCell,
+.newBox table td.tbWaitSepCell, .newBox table td.tbXSepCell, .newBox table td.tbEditSepCell,
+.newBox table td.tbSepCell {
+    border-left-width: 0 !important;
+    border-right-width: 0 !important;
+}
+td.lrtbOkSepCell, td.ltbOkSepCell, td.rtbOkSepCell, td.tbOkSepCell { background-color: var(--accent-success) !important; }
+td.lrtbHalfSepCell, td.ltbHalfSepCell, td.rtbHalfSepCell, td.tbHalfSepCell { background-color: var(--accent-warning) !important; }
+td.lrtbWaitSepCell, td.ltbWaitSepCell, td.rtbWaitSepCell, td.tbWaitSepCell { background-color: var(--accent-primary) !important; }
+td.lrtbXSepCell, td.ltbXSepCell, td.rtbXSepCell, td.tbXSepCell { background-color: #ff9800 !important; color: #ffffff !important; } /* Orange needs light text */
+td.lrtbFailSepCell, td.ltbFailSepCell, td.rtbFailSepCell, td.tbFailSepCell { background-color: var(--accent-danger) !important; color: #ffffff !important; } /* Red needs light text */
+td.lrtbEditSepCell, td.ltbEditSepCell, td.rtbEditSepCell, td.tbEditSepCell { background-color: #7e57c2 !important; color: #ffffff !important; } /* Purple needs light text */
+
+
+/* === Forms, Inputs, Buttons === */
+label {
+	color: var(--text-secondary) !important;
+	font-weight: normal !important;
+	margin-right: 5px !important;
+	background: none !important;
+	border: none !important;
+	padding: 0 !important;
+}
+
+input[type="text"], input[type="password"], input[type="file"], select, textarea {
+	background-color: var(--bg-main) !important;
+	border: 1px solid var(--border-color) !important;
+	color: var(--text-primary) !important;
+	padding: 9px 13px !important; /* Slightly increased padding */
+	border-radius: 0px !important; /* NO rounding */
+	font-family: var(--font-sans) !important;
+	font-size: 14px !important;
+	width: auto !important;
+	min-width: 200px;
+	vertical-align: middle;
+}
+input[type="file"] {
+	padding: 6px !important;
+	min-width: 250px;
+}
+input[type="checkbox"] {
+	vertical-align: middle;
+	width: 16px;
+	height: 16px;
+	accent-color: var(--accent-primary); /* Modern way to color checkboxes */
+}
+textarea {
+	min-height: 100px;
+	width: 100% !important;
+}
+select {
+	background-image: url('data:image/svg+xml;utf8,<svg fill="%23a0a0a0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>') !important;
+	background-repeat: no-repeat !important;
+	background-position: right 10px center !important;
+	background-size: 1em !important;
+	-webkit-appearance: none !important;
+	-moz-appearance: none !important;
+	appearance: none !important;
+	padding-right: 30px !important;
+}
+
+/* Button wrappers */
+.bLink, .bUpd, .bDel, .bUpd input[type="submit"] {
+	display: inline-block !important;
+	vertical-align: middle !important;
+	margin: 0 4px !important;
+	padding: 0 !important;
+	background: none !important;
+	border: none !important;
+	width: auto !important;
+}
+/* Actual Button/Link Styling */
+.bLink > div > a, .bUpd > input[type="submit"], .bDel > div > a,
+input.std, input.test, button, a.butLink, a.butDel, a.butJS, a.butJSDel, a.butWarn,
+.updButton, .delButton, .insButton, .fltButton, .seekButton, .updButtonBig {
+	display: inline-block !important;
+	background-color: var(--accent-primary) !important;
+	color: #ffffff !important;
+	border: 1px solid var(--accent-primary) !important; /* Add border matching background */
+	padding: 8px 18px !important; /* More horizontal padding */
+	border-radius: 0px !important; /* NO rounding */
+	font-weight: 600 !important; /* Semi-bold */
+	text-decoration: none !important;
+	cursor: pointer !important;
+	text-align: center !important;
+	font-size: 13px !important;
+	transition: background-color 0.15s ease, border-color 0.15s ease; /* Faster transition */
+}
+.bLink > div > a:hover, .bUpd > input[type="submit"]:hover,
+input.std:hover, input.test:hover, button:hover, a.butLink:hover, a.butJS:hover,
+.updButton:hover, .insButton:hover, .fltButton:hover, .seekButton:hover, .updButtonBig:hover {
+	background-color: var(--accent-primary-hover) !important;
+	border-color: var(--accent-primary-hover) !important;
+	color: #ffffff !important;
+}
+
+/* Delete / Red Buttons */
+.bDel > div > a, a.butDel, a.butJSDel, .delButton, input.err {
+	background-color: var(--accent-danger) !important;
+	border-color: var(--accent-danger) !important;
+}
+.bDel > div > a:hover, a.butDel:hover, a.butJSDel:hover, .delButton:hover, input.err:hover {
+	background-color: var(--accent-danger-hover) !important;
+	border-color: var(--accent-danger-hover) !important;
+}
+
+/* Warning Buttons */
+a.butWarn {
+	 background-color: var(--accent-warning) !important;
+	 border-color: var(--accent-warning) !important;
+	 color: #000000 !important; /* Black text on yellow */
+}
+a.butWarn:hover {
+	 background-color: #ddb30c !important; /* Darker yellow */
+	 border-color: #ddb30c !important;
+}
+
+
+/* Disabled states */
+input:disabled, button:disabled, select:disabled, textarea:disabled,
+input.stdDis, input.testDis, .disButton, .butJSDis {
+	background-color: #3a3a3a !important; /* Darker disabled */
+	color: var(--text-secondary) !important;
+	cursor: not-allowed !important;
+	opacity: 0.6 !important;
+	border-color: #4a4a4a !important;
+}
+a.butJSDis {
+	 background-color: #3a3a3a !important;
+	 color: var(--text-secondary) !important;
+	 cursor: not-allowed !important;
+	 opacity: 0.6 !important;
+	 border: 1px solid #4a4a4a !important;
+	 padding: 8px 18px !important;
+	 border-radius: 0px !important;
+	 font-weight: 600 !important;
+}
+
+/* === Course/Task List (`details.menuList`) === */
+/* Zmenšení výšky položek úloh v4 + Centrovaní */
+details.menuList {
+	background-color: var(--bg-surface) !important;
+	border: 1px solid var(--border-color) !important;
+	border-radius: 4px !important;
+	margin: 20px 0 !important;
+	padding: 0 !important;
+	overflow: hidden;
+}
+details.menuList summary {
+	padding: 12px 20px !important;
+	font-weight: bold !important;
+	font-size: 1.1em !important;
+	color: var(--text-primary) !important;
+	background-color: var(--bg-header) !important;
+	border-bottom: 1px solid var(--border-color) !important;
+	cursor: pointer !important;
+	list-style: none;
+	position: relative;
+}
+details.menuList summary::-webkit-details-marker { display: none; }
+details.menuList summary::before {
+	content: '›';
+	position: absolute;
+	left: 15px;
+	top: 50%;
+	font-size: 1.6em;
+	font-weight: lighter;
+	color: var(--text-secondary);
+	transition: transform 0.2s ease;
+	transform: translateY(-50%) rotate(0deg);
+	line-height: 1;
+}
+details.menuList[open] > summary::before {
+	transform: translateY(-50%) rotate(90deg);
+}
+
+details.menuList > div { /* Content area */
+	/* Reduce padding inside the main content div */
+	padding: 10px 20px !important;
+	margin: 0 !important;
+}
+details.menuList > div > div { /* Each item row */
+	display: flex !important;
+	align-items: center !important;
+	/* Further reduce bottom margin/padding for compactness */
+	margin-bottom: 8px !important;
+	padding-bottom: 8px !important;
+	border-bottom: 1px solid var(--border-color) !important;
+}
+details.menuList > div > div:last-child {
+	margin-bottom: 0;
+	padding-bottom: 0;
+	border-bottom: none;
+}
+
+/* Big Buttons in List - Further Reduced Height */
+details.menuList .bigButLink, details.menuList .bigButDis {
+	flex-shrink: 0 !important;
+	margin: 0 15px 0 0 !important;
+	padding: 0 !important;
+	background: none !important;
+	border: none !important;
+	width: 190px !important;
+}
+.bigButLink > div, .bigButDis > div {
+	background-color: var(--border-strong) !important;
+	border: 1px solid var(--border-color) !important;
+	border-radius: 0px !important;
+	padding: 0 !important;
+	text-align: left !important;
+	width: 100% !important;
+	transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.bigButLink a, .bigButDis b {
+	display: block !important;
+	text-decoration: none !important;
+	color: var(--text-primary) !important;
+	width: 100% !important;
+	font-weight: 600 !important;
+}
+.bigButLink a > div, .bigButDis b > div {
+	display: flex !important;
+	align-items: center !important;
+	/* Minimal top/bottom padding inside button */
+	padding: 4px 12px !important;
+	height: auto !important;
+	position: static !important;
+	transform: none !important;
+}
+.bigButLink img, .bigButDis img {
+	margin: 0 10px 0 0 !important;
+	width: 18px !important; /* Slightly smaller icon */
+	height: 18px !important;
+	position: static !important;
+	transform: none !important;
+}
+.bigButLink span, .bigButDis span {
+	position: static !important;
+	transform: none !important;
+	margin: 0 !important;
+	font-size: 0.9em; /* Even smaller text in button */
+	line-height: 1.2; /* Tighter */
+}
+.bigButLink:hover > div {
+	background-color: var(--accent-primary) !important;
+	border-color: var(--accent-primary) !important;
+}
+.bigButLink:hover a, .bigButLink:hover span {
+	color: #ffffff !important;
+}
+
+.bigButDis { opacity: 0.6 !important; cursor: not-allowed !important; }
+.bigButDis b { color: var(--text-secondary) !important; }
+
+
+/* Description area in List - Further Reduced Spacing */
+details.menuList > div > div > div:last-child {
+	font-size: 0.85em !important; /* Slightly smaller description font */
+	color: var(--text-secondary) !important;
+	padding: 0 !important;
+	flex-grow: 1;
+	line-height: 1.35 !important; /* Tighter lines */
+}
+details.menuList .menuList { /* "Hodnocení: --" */
+	display: block;
+	font-weight: bold !important;
+	color: var(--text-primary) !important;
+	margin-bottom: 2px !important; /* Minimal margin */
+	font-size: 1.1em; /* Keep heading size relative */
+}
+/* Status spans in list - Minimal Spacing */
+.submitStd, .submitEarly, .submitLate, .submitDis {
+	display: block !important;
+	margin-top: 1px !important; /* Minimal margin */
+	font-weight: normal !important;
+	font-size: 1em; /* Relative to parent (0.85em) */
+}
+.submitEarly { color: var(--accent-success) !important; }
+.submitLate { color: var(--accent-danger) !important; }
+.submitDis { color: var(--text-secondary) !important; }
+.submitStd { color: var(--text-secondary) !important; }
+
+/* === Misc === */
+#countdown {
+	font-weight: bold !important;
+	color: var(--accent-warning) !important;
+	font-family: var(--font-mono) !important;
+	font-size: 1em !important;
+}
+.textOk { color: var(--accent-success) !important; font-weight: bold; }
+.textWarn { color: var(--accent-warning) !important; font-weight: bold; }
+.textCrit { color: var(--accent-danger) !important; font-weight: bold; }
+.textOther, .textDis, .textStd { color: var(--text-secondary) !important; font-weight: normal; }
+
+img.border {
+	border: 1px solid var(--border-color) !important;
+	border-radius: 0px !important; /* No rounding */
+}
+summary::before { display: none !important; } /* Already hidden by specific rule, but keep for safety */

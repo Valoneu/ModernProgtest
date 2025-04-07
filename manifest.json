@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "ModernProgtest",
+  "version": "1.0",
+  "description": "Applies modern custom CSS styles to progtest.fit.cvut.cz.",
+  "content_scripts": [
+    {
+      "matches": ["*://progtest.fit.cvut.cz/*"],
+      "css": ["css.css"]
+    }
+  ]
+}
