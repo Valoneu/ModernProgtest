@@ -604,3 +604,98 @@ img.border {
 	border-radius: 0px !important; /* No rounding */
 }
 summary::before { display: none !important; } /* Already hidden by specific rule, but keep for safety */
+
+/* === Styling for table.resultLayout === */
+table.resultLayout {
+	border-spacing: 0px !important;
+	border-collapse: separate !important; /* Zachováváme separate dle originálu */
+	width: 95% !important; /* Nebo jiná šířka dle potřeby */
+	margin: 25px auto !important;
+	/* Můžeme přidat vnější border a zaoblení pro konzistenci s .newBox, pokud chceš */
+	/* border: 1px solid var(--border-color); */
+	/* border-radius: 4px; */
+}
+
+/* --- Header --- */
+table.resultLayout > thead > tr > td {
+	font-weight: bold !important; /* Zvýraznění headeru */
+	background-color: var(--bg-header) !important;
+	border: 1px solid var(--border-color) !important;
+	/* Použijeme konzistentní padding */
+	padding: 10px 12px !important;
+	color: var(--text-primary) !important;
+	text-align: left !important; /* Výchozí zarovnání doleva */
+	white-space: nowrap !important;
+}
+
+table.resultLayout > thead > tr > td > a{
+	color: var(--text-primary) !important;
+}
+
+/* Sticky Header Cell (Column 2) */
+/* Použijeme jednodušší selektor, který by měl fungovat pro většinu případů */
+table.resultLayout > thead > tr > td:nth-child(2) {
+	position: sticky !important;
+	left: 0px !important;
+	z-index: 2 !important; /* Nad sticky buňkami v těle */
+	background-color: var(--bg-header) !important; /* Musí mít vlastní background */
+	/* Můžeme přidat pravý okraj pro vizuální oddělení */
+	border-right: 1px solid var(--border-strong) !important;
+}
+
+/* --- Footer --- */
+table.resultLayout > tfoot > tr > td {
+	font-weight: bold !important; /* Zvýraznění footeru */
+	background-color: var(--bg-header) !important;
+	border: 1px solid var(--border-color) !important;
+	padding: 10px 12px !important;
+	color: var(--text-primary) !important;
+	text-align: right !important; /* Zarovnání doprava dle originálu */
+	white-space: nowrap !important;
+}
+
+/* --- Body --- */
+
+table.resultLayout > tbody > tr > td {
+	padding: 8px 12px !important; /* Upravený padding pro tělo */
+	white-space: nowrap !important;
+	border-style: solid !important;
+	border-color: var(--border-color) !important; /* Jednoduchý border */
+	/* Aplikujeme border nahoře/dole */
+	border-width: 1px 0px !important;
+	text-align: right !important; /* Výchozí zarovnání doprava */
+	background-color: var(--bg-surface) !important; /* Pozadí buňky */
+	color: var(--text-primary) !important;
+	vertical-align: middle;
+}
+
+/* Přidání levého/pravého okraje pro krajní buňky */
+table.resultLayout > tbody > tr > td:first-child {
+	border-left-width: 1px !important;
+}
+table.resultLayout > tbody > tr > td:last-child {
+	border-right-width: 1px !important;
+}
+
+/* Hover efekt pro běžné buňky */
+table.resultLayout > tbody > tr:hover > td {
+	background-color: var(--bg-hover) !important;
+}
+
+/* Sticky Body Cell (Column 2) */
+table.resultLayout > tbody > tr > td:nth-child(2) {
+	text-align: left !important; /* Zarovnání doleva */
+	position: sticky !important;
+	left: 0px !important;
+	z-index: 1 !important; /* Nad ostatními buňkami, pod headerem */
+	/* Musí mít explicitní background, který odpovídá řádku */
+	background-color: var(--bg-surface) !important;
+	 /* Můžeme přidat pravý okraj pro vizuální oddělení */
+	border-right: 1px solid var(--border-strong) !important;
+	/* Okraj vlevo/nahoře/dole je zděděný/nastavený stejně jako ostatní td */
+}
+
+/* Hover efekt pro sticky buňku (musí být definován zvlášť) */
+table.resultLayout > tbody > tr:hover > td:nth-child(2) {
+	background-color: var(--bg-hover) !important;
+}
