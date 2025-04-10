@@ -629,7 +629,7 @@ table.resultLayout > thead > tr > td {
 }
 
 table.resultLayout > thead > tr > td > a{
-	color: var(--text-primary) !important;
+	color: var(--text-primary) !important;	
 }
 
 /* Sticky Header Cell (Column 2) */

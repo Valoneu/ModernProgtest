@@ -4,7 +4,7 @@
   "version": "1.0",
   "description": "Applies modern custom CSS styles to progtest.fit.cvut.cz.",
   "icons": {
-    "128": "Icon.png"
+    "128": "./Icon.png"
   },
   "content_scripts": [
     {
